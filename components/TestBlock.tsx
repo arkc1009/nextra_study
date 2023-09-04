@@ -9,7 +9,7 @@ import {
   SandpackProvider,
 } from "@codesandbox/sandpack-react";
 
-function TestBlock({ children }: PropsWithChildren) {
+function TestBlock({ children, tab }: PropsWithChildren<{ tab?: boolean }>) {
   const code = useMemo(
     () =>
       createFileMap(React.Children.toArray(children)[0] as React.ReactElement),
@@ -20,9 +20,12 @@ function TestBlock({ children }: PropsWithChildren) {
     <SandpackProvider
       template="react-ts"
       files={{ "App.tsx": code }}
+      options={{
+        externalResources: ["https://cdn.tailwindcss.com"],
+      }}
       //   customSetup={{ dependencies: { "framer-motion": "latest" } }}
     >
-      <SandpackLayout className="mb-2">
+      <SandpackLayout className={tab ? "mb-4" : "mb-2"}>
         <SandpackCodeEditor />
       </SandpackLayout>
 

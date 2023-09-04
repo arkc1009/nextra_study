@@ -25,8 +25,11 @@ const config: DocsThemeConfig = {
   useNextSeoProps: () => ({ titleTemplate: "%s - STUDY" }),
   components: {
     TestA: () => <div>What? The? Component?</div>,
-    EDSCodePack: ({ children }: PropsWithChildren) =>
-      children ? <TestBlock>{children}</TestBlock> : null,
+    MyCodePack: ({
+      children,
+      tab = false,
+    }: PropsWithChildren<{ tab?: boolean }>) =>
+      children ? <TestBlock tab={tab}>{children}</TestBlock> : null,
   },
 };
 
